@@ -4,10 +4,13 @@
  */
 exports.up = function (knex) {
   return knex.schema.createTable(`leagues`, (table) => {
-    table.uuid(`id`).primary();
+    table.increments(`id`);
     table
-      .uuid(`user_id`)
-      .references(`users.id`)
+      .integer(`user_id`)
+      .unsigned()
+      .notNullable()
+      .references(`id`)
+      .inTable(`users`)
       .onUpdate(`CASCADE`)
       .onDelete(`CASCADE`);
     table.string(`name`).notNullable();

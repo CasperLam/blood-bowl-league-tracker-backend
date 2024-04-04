@@ -4,8 +4,10 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "dev": "node --watch server.js",
     "db:migrate": "knex migrate:latest",
-    "db:seed": "knex seed:run"
+    "db:seed": "knex seed:run",
+    "db:rollback": "knex migrate:rollback"
   },
   "devDependencies": {},
   "author": "",
