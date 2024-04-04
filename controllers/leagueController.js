@@ -18,6 +18,34 @@ const getLeagues = async (req, res) => {
   }
 };
 
+const getLeague = async (req, res) => {
+  const { user_id, id } = req.params;
+
+  try {
+    const userLeagues = await knex(`leagues`).where(`leagues.user_id`, user_id);
+
+    if (!userLeagues.length) {
+      return res
+        .status(404)
+        .json({ message: `No leagues found for this user` });
+    }
+
+    const league = await knex(`leagues`)
+      .join(`teams`, `leagues.id`, `teams.league_id`)
+      .where(`leagues.id`, id);
+
+    if (!league.length) {
+      return res
+        .status(404)
+        .json({ message: `No leagues found with ID: ${id}` });
+    }
+
+    res.status(200).json(league);
+  } catch (error) {
+    res.status(500).json(`Server error: `, error);
+  }
+};
+
 const createLeague = async (req, res) => {
   const { name, user_id } = req.body;
 
@@ -44,4 +72,4 @@ const createLeague = async (req, res) => {
   }
 };
 
-module.exports = { getLeagues, createLeague };
+module.exports = { getLeagues, getLeague, createLeague };
