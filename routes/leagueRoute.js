@@ -6,6 +6,9 @@ router.route(`/`).post(leagueController.createLeague);
 
 router.route(`/:user_id`).get(leagueController.getLeagues);
 
-router.route(`/:user_id/:id`).get(leagueController.getLeague);
+router
+  .route(`/:user_id/:id`)
+  .get(leagueController.getLeague)
+  .put(leagueController.editLeague);
 
 module.exports = router;
