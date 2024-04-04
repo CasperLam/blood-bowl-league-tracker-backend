@@ -18,15 +18,14 @@ exports.up = function (knex) {
     table.string(`name`).notNullable();
     table.string(`faction`).notNullable();
     table.string(`head_coach`);
-    table.string(`points`).notNullable().defaultTo(0);
-    table.string(`team_value`).notNullable();
+    table.int(`points`).notNullable().defaultTo(0);
+    table.int(`team_value`).notNullable();
     table.timestamp(`create_at`).defaultTo(knex.fn.now());
     table
       .dateTime(`updated_at`)
       .defaultTo(knex.raw(`NULL ON UPDATE CURRENT_TIMESTAMP`));
   });
 };
-
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
