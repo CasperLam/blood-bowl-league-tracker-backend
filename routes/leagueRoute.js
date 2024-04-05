@@ -9,6 +9,7 @@ router.route(`/:user_id`).get(leagueController.getLeagues);
 router
   .route(`/:user_id/:id`)
   .get(leagueController.getLeague)
-  .put(leagueController.editLeague);
+  .put(leagueController.editLeague)
+  .delete(leagueController.deleteLeague);
 
 module.exports = router;

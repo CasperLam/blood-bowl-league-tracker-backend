@@ -5,7 +5,6 @@ const getLeagues = async (req, res) => {
 
   try {
     const leagues = await knex(`leagues`).where(`leagues.user_id`, user_id);
-
     if (!leagues.length) {
       return res
         .status(404)
@@ -14,7 +13,7 @@ const getLeagues = async (req, res) => {
 
     res.status(200).json(leagues);
   } catch (error) {
-    res.status(500).json(`Server error: `, error);
+    res.status(500).json(`Server error: ${error}`);
   }
 };
 
@@ -23,7 +22,6 @@ const getLeague = async (req, res) => {
 
   try {
     const userLeagues = await knex(`leagues`).where(`leagues.user_id`, user_id);
-
     if (!userLeagues.length) {
       return res
         .status(404)
@@ -33,7 +31,6 @@ const getLeague = async (req, res) => {
     const league = await knex(`leagues`)
       .join(`teams`, `leagues.id`, `teams.league_id`)
       .where(`leagues.id`, id);
-
     if (!league.length) {
       return res
         .status(404)
@@ -42,13 +39,12 @@ const getLeague = async (req, res) => {
 
     res.status(200).json(league);
   } catch (error) {
-    res.status(500).json(`Server error: `, error);
+    res.status(500).json(`Server error: ${error}`);
   }
 };
 
 const createLeague = async (req, res) => {
   const { name, user_id } = req.body;
-
   if (!name || !user_id) {
     return res
       .status(400)
@@ -68,14 +64,13 @@ const createLeague = async (req, res) => {
       .first();
     res.status(201).json(newLeague);
   } catch (error) {
-    res.status(500).json(`Server error: `, error);
+    res.status(500).json(`Server error: ${error}`);
   }
 };
 
 const editLeague = async (req, res) => {
   const { user_id, id } = req.params;
   const { name } = req.body;
-
   if (!name) {
     return res
       .status(400)
@@ -84,7 +79,6 @@ const editLeague = async (req, res) => {
 
   try {
     const userLeagues = await knex(`leagues`).where(`leagues.user_id`, user_id);
-
     if (!userLeagues.length) {
       return res
         .status(404)
@@ -92,7 +86,6 @@ const editLeague = async (req, res) => {
     }
 
     const league = await knex(`leagues`).where(`leagues.id`, id);
-
     if (!league.length) {
       return res
         .status(404)
@@ -104,8 +97,39 @@ const editLeague = async (req, res) => {
     const updatedLeague = await knex("leagues").where({ id: id }).first();
     res.json(updatedLeague);
   } catch (error) {
-    res.status(500).json(`Server error: `, error);
+    res.status(500).json(`Server error: ${error}`);
   }
 };
 
-module.exports = { getLeagues, getLeague, createLeague, editLeague };
+const deleteLeague = async (req, res) => {
+  const { user_id, id } = req.params;
+
+  try {
+    const userLeagues = await knex(`leagues`).where(`leagues.user_id`, user_id);
+    if (!userLeagues.length) {
+      return res
+        .status(404)
+        .json({ message: `No leagues found for this user` });
+    }
+
+    const league = await knex(`leagues`).where(`leagues.id`, id);
+    if (!league.length) {
+      return res
+        .status(404)
+        .json({ message: `No leagues found with ID: ${id}` });
+    }
+
+    await knex("leagues").where({ id: id }).del();
+    res.status(204).end();
+  } catch (error) {
+    res.status(500).json(`Server error: ${error}`);
+  }
+};
+
+module.exports = {
+  getLeagues,
+  getLeague,
+  createLeague,
+  editLeague,
+  deleteLeague,
+};
