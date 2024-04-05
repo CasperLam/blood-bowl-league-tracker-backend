@@ -7,7 +7,7 @@ router.route(`/`).post(leagueController.createLeague);
 router.route(`/:user_id`).get(leagueController.getLeagues);
 
 router
-  .route(`/:user_id/:id`)
+  .route(`/:user_id/:league_id`)
   .get(leagueController.getLeague)
   .put(leagueController.editLeague)
   .delete(leagueController.deleteLeague);
