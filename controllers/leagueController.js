@@ -58,6 +58,7 @@ const createLeague = async (req, res) => {
         .status(400)
         .json({ message: `Could not find a user with ID: ${user_id}` });
     }
+
     const newLeagueIds = await knex("leagues").insert(req.body);
     const newLeague = await knex("leagues")
       .where({ id: newLeagueIds[0] })
