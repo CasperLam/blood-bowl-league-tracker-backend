@@ -129,4 +129,45 @@ const editTeam = async (req, res) => {
   }
 };
 
-module.exports = { createTeam, getTeam, editTeam };
+const deleteTeam = async (req, res) => {
+  const { user_id, league_id, team_id } = req.params;
+  if (!user_id || !league_id || !team_id) {
+    res.status(400).json({
+      message: `The following parameters are all required: user_id, league_id, team_id`,
+    });
+  }
+
+  try {
+    const teamUser = await knex(`teams`).where({
+      user_id: user_id,
+      id: team_id,
+    });
+    if (!teamUser.length) {
+      return res.status(400).json({ message: `No teams found for this user` });
+    }
+
+    const teamLeague = await knex(`teams`).where({
+      league_id: league_id,
+      id: team_id,
+    });
+    if (!teamLeague.length) {
+      return res
+        .status(404)
+        .json({ message: `No teams found for this league` });
+    }
+
+    const team = await knex(`teams`).where({ id: team_id });
+    if (!team.length) {
+      return res
+        .status(404)
+        .json({ message: `No team found with ID: ${team_id}` });
+    }
+
+    await knex(`teams`).where({ id: team_id }).del();
+    res.status(204).end();
+  } catch (error) {
+    res.status(500).json(`Server error: ${error}`);
+  }
+};
+
+module.exports = { createTeam, getTeam, editTeam, deleteTeam };
