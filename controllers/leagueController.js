@@ -4,14 +4,14 @@ const getLeagues = async (req, res) => {
   const { user_id } = req.params;
 
   try {
-    const leagues = await knex(`leagues`).where(`leagues.user_id`, user_id);
-    if (!leagues.length) {
+    const userLeagues = await knex(`leagues`).where({ user_id: user_id });
+    if (!userLeagues.length) {
       return res
         .status(404)
         .json({ message: `No leagues found for this user` });
     }
 
-    res.status(200).json(leagues);
+    res.status(200).json(userLeagues);
   } catch (error) {
     res.status(500).json(`Server error: ${error}`);
   }
@@ -21,8 +21,8 @@ const getLeague = async (req, res) => {
   const { user_id, league_id } = req.params;
 
   try {
-    const leagueUser = await knex(`leagues`).where(`leagues.user_id`, user_id);
-    if (!leagueUser.length) {
+    const userLeagues = await knex(`leagues`).where({ user_id: user_id });
+    if (!userLeagues.length) {
       return res
         .status(404)
         .json({ message: `No leagues found for this user` });
@@ -79,14 +79,14 @@ const editLeague = async (req, res) => {
   }
 
   try {
-    const userLeagues = await knex(`leagues`).where(`leagues.user_id`, user_id);
+    const userLeagues = await knex(`leagues`).where({ user_id: user_id });
     if (!userLeagues.length) {
       return res
         .status(404)
         .json({ message: `No leagues found for this user` });
     }
 
-    const league = await knex(`leagues`).where(`leagues.id`, league_id);
+    const league = await knex(`leagues`).where({ id: league_id });
     if (!league.length) {
       return res
         .status(404)
@@ -108,14 +108,14 @@ const deleteLeague = async (req, res) => {
   const { user_id, league_id } = req.params;
 
   try {
-    const userLeagues = await knex(`leagues`).where(`leagues.user_id`, user_id);
+    const userLeagues = await knex(`leagues`).where({ user_id: user_id });
     if (!userLeagues.length) {
       return res
         .status(404)
         .json({ message: `No leagues found for this user` });
     }
 
-    const league = await knex(`leagues`).where(`leagues.id`, league_id);
+    const league = await knex(`leagues`).where({ id: league_id });
     if (!league.length) {
       return res
         .status(404)

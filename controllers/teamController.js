@@ -24,8 +24,8 @@ const createTeam = async (req, res) => {
         .json({ message: `Could not find a user with ID: ${user_id}` });
     }
 
-    const league = await knex(`leagues`).where(`leagues.id`, league_id);
-    if (!league.length) {
+    const whichLeague = await knex(`leagues`).where(`leagues.id`, league_id);
+    if (!whichLeague.length) {
       return res
         .status(404)
         .json({ message: `No leagues found with ID: ${league_id}` });
@@ -56,14 +56,17 @@ const getTeam = async (req, res) => {
       return res.status(400).json({ message: `No teams found for this user` });
     }
 
-    const teamLeague = await knex(`leagues`).where(`leagues.id`, league_id);
+    const teamLeague = await knex(`teams`).where({
+      league_id: league_id,
+      id: team_id,
+    });
     if (!teamLeague.length) {
       return res
         .status(404)
         .json({ message: `No teams found for this league` });
     }
 
-    const team = await knex(`teams`).where(`teams.id`, team_id);
+    const team = await knex(`teams`).where({ id: team_id });
     if (!team.length) {
       return res
         .status(404)
