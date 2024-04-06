@@ -21,8 +21,8 @@ const getLeague = async (req, res) => {
   const { user_id, league_id } = req.params;
 
   try {
-    const userLeagues = await knex(`leagues`).where(`leagues.user_id`, user_id);
-    if (!userLeagues.length) {
+    const leagueUser = await knex(`leagues`).where(`leagues.user_id`, user_id);
+    if (!leagueUser.length) {
       return res
         .status(404)
         .json({ message: `No leagues found for this user` });
