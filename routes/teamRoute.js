@@ -4,6 +4,9 @@ const teamController = require(`../controllers/teamController`);
 
 router.route(`/`).post(teamController.createTeam);
 
-router.route(`/:user_id/:league_id/:team_id`).get(teamController.getTeam);
+router
+  .route(`/:user_id/:league_id/:team_id`)
+  .get(teamController.getTeam)
+  .put(teamController.editTeam);
 
 module.exports = router;
