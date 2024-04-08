@@ -31,11 +31,6 @@ const getLeague = async (req, res) => {
     const league = await knex(`leagues`)
       .join(`teams`, `leagues.id`, `teams.league_id`)
       .where(`leagues.id`, league_id);
-    if (!league.length) {
-      return res
-        .status(404)
-        .json({ message: `No leagues found with ID: ${league_id}` });
-    }
 
     res.status(200).json(league);
   } catch (error) {

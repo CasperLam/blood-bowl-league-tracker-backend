@@ -1,3 +1,4 @@
+// const { validateUser } = require("../helpers/validations");
 const knex = require(`knex`)(require(`../knexfile`));
 
 const createTeam = async (req, res) => {
@@ -23,6 +24,7 @@ const createTeam = async (req, res) => {
         .status(400)
         .json({ message: `Could not find a user with ID: ${user_id}` });
     }
+    // validateUser(res, user_id);
 
     const whichLeague = await knex(`leagues`).where(`leagues.id`, league_id);
     if (!whichLeague.length) {
