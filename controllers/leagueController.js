@@ -28,10 +28,19 @@ const getLeague = async (req, res) => {
         .json({ message: `No leagues found for this user` });
     }
 
-    const league = await knex(`leagues`)
+    const league = await knex
+      .select("leagues.name AS league_name", `teams.*`)
+      .from("leagues")
       .join(`teams`, `leagues.id`, `teams.league_id`)
       .where(`leagues.id`, league_id);
-
+    console.log(
+      await knex
+        .select(`leagues.name AS league_name`, `teams.*`)
+        .join(`teams`, `leagues.id`, `teams.league_id`)
+        // .where(`leagues.id`, league_id)
+        .toSQL()
+        .toNative()
+    );
     res.status(200).json(league);
   } catch (error) {
     res.status(500).json(`Server error: ${error}`);
