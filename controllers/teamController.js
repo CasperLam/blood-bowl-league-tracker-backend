@@ -89,10 +89,10 @@ const editTeam = async (req, res) => {
     });
   }
 
-  const { name, faction, head_coach, team_value } = req.body;
-  if (!name || !faction || !head_coach || !team_value) {
+  const { name, faction, head_coach, team_value, points } = req.body;
+  if (!name || !faction || !head_coach || !team_value || !points) {
     return res.status(400).json({
-      message: `The following fields are all required: name, faction, head_coach, team_value`,
+      message: `The following fields are all required: name, faction, head_coach, team_value, points`,
     });
   }
 
@@ -102,7 +102,7 @@ const editTeam = async (req, res) => {
       id: team_id,
     });
     if (!teamUser.length) {
-      return res.status(400).json({ message: `No teams found for this user` });
+      return res.status(400).json({ message: `Team not found for this user` });
     }
 
     const teamLeague = await knex(`teams`).where({
@@ -112,7 +112,7 @@ const editTeam = async (req, res) => {
     if (!teamLeague.length) {
       return res
         .status(404)
-        .json({ message: `No teams found for this league` });
+        .json({ message: `Team not found for this league` });
     }
 
     const team = await knex(`teams`).where({ id: team_id });
