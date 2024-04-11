@@ -121,8 +121,18 @@ const editTeam = async (req, res) => {
         .status(404)
         .json({ message: `No team found with ID: ${team_id}` });
     }
+    //restructure the object that the front end sends. i.e. team_id to id
 
-    await knex(`teams`).where({ id: team_id }).update(req.body);
+    await knex(`teams`).where({ id: team_id }).update({
+      id: team_id,
+      user_id,
+      league_id,
+      name,
+      faction,
+      head_coach,
+      points,
+      team_value,
+    });
 
     const updatedTeam = await knex(`teams`).where({ id: team_id }).first();
     res.status(200).json(updatedTeam);
