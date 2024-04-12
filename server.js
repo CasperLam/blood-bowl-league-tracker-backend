@@ -9,6 +9,7 @@ const teamRoutes = require(`./routes/teamRoute`);
 app.use(cors(process.env.CORS_ORIGIN));
 app.use(express.json());
 
+app.use(`/api/users`, leagueRoutes);
 app.use(`/api/leagues`, leagueRoutes);
 app.use(`/api/teams`, teamRoutes);
 

@@ -118,6 +118,7 @@ const deleteLeague = async (req, res) => {
         .json({ message: `No leagues found with ID: ${league_id}` });
     }
 
+    await knex(`teams`).where({ league_id: league_id }).del();
     await knex("leagues").where({ id: league_id }).del();
     res.status(204).end();
   } catch (error) {
