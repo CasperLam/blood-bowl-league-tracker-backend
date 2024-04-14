@@ -9,19 +9,19 @@ exports.seed = async function (knex) {
     {
       id: `1`,
       email: `t1@test.com`,
-      password: `$2b$10$YsPV7rYiQH4Djztu5aDbVuiCpavSaDqToZAx8CeBkmFm/RF5LzGN2`,
+      password: `$2b$06$D1CZYUoZyaJkreUUhbIHkuPAuGCarSsk5m4oiGa/sglYVRYxVYJdq`,
       username: `Casper`,
     },
     {
       id: `2`,
       email: `t2@test.com`,
-      password: `$2b$10$YsPV7rYiQH4Djztu5aDbVuiCpavSaDqToZAx8CeBkmFm/RF5LzGN2`,
+      password: `$2b$06$D1CZYUoZyaJkreUUhbIHkuPAuGCarSsk5m4oiGa/sglYVRYxVYJdq`,
       username: `Jim`,
     },
     {
       id: `3`,
       email: `t3@test.com`,
-      password: `$2b$10$YsPV7rYiQH4Djztu5aDbVuiCpavSaDqToZAx8CeBkmFm/RF5LzGN2`,
+      password: `$2b$06$D1CZYUoZyaJkreUUhbIHkuPAuGCarSsk5m4oiGa/sglYVRYxVYJdq`,
       username: `Bob`,
     },
   ]);
