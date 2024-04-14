@@ -9,7 +9,7 @@ exports.seed = async function (knex) {
     {
       id: `1`,
       user_id: `1`,
-      name: `Lustrian Superleague`,
+      name: `Old World Classic`,
     },
     {
       id: `2`,
@@ -24,7 +24,7 @@ exports.seed = async function (knex) {
     {
       id: `4`,
       user_id: `1`,
-      name: `Old World Classic`,
+      name: `Lustrian Superleague`,
     },
   ]);
 };

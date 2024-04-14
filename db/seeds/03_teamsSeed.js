@@ -9,7 +9,7 @@ exports.seed = async function (knex) {
     {
       id: `1`,
       user_id: `1`,
-      league_id: `1`,
+      league_id: `4`,
       name: `Gwaka'moli Crater Gators`,
       faction: `Lizardmen`,
       head_coach: `Kroq-Gar Scalecaller`,
@@ -19,7 +19,7 @@ exports.seed = async function (knex) {
     {
       id: `2`,
       user_id: `1`,
-      league_id: `1`,
+      league_id: `4`,
       name: `Doom Lords`,
       faction: `Chaos Chosen`,
       head_coach: `Kargath Bloodfiend`,
@@ -29,7 +29,7 @@ exports.seed = async function (knex) {
     {
       id: `3`,
       user_id: `1`,
-      league_id: `1`,
+      league_id: `4`,
       name: `Skavenblight Scramblers`,
       faction: `Skaven`,
       head_coach: `Sneek Sniktails`,
@@ -39,7 +39,7 @@ exports.seed = async function (knex) {
     {
       id: `4`,
       user_id: `1`,
-      league_id: `1`,
+      league_id: `4`,
       name: `Greenfield Grasshuggers`,
       faction: `Halfling`,
       head_coach: `Pip Smallfry`,
@@ -49,7 +49,7 @@ exports.seed = async function (knex) {
     {
       id: `5`,
       user_id: `1`,
-      league_id: `1`,
+      league_id: `4`,
       name: `Elfheim Eagles`,
       faction: `Elven Union`,
       head_coach: `Aelrion Silvermoon`,
@@ -59,7 +59,7 @@ exports.seed = async function (knex) {
     {
       id: `6`,
       user_id: `1`,
-      league_id: `1`,
+      league_id: `4`,
       name: `Crud Creek Nosepickers`,
       faction: `Snotling`,
       head_coach: `Slop the Sludgebringer`,
@@ -69,7 +69,7 @@ exports.seed = async function (knex) {
     {
       id: `7`,
       user_id: `1`,
-      league_id: `1`,
+      league_id: `4`,
       name: `Middenheim Maulers`,
       faction: `Old World Alliance`,
       head_coach: `Harold Ironsides`,
@@ -79,7 +79,7 @@ exports.seed = async function (knex) {
     {
       id: `8`,
       user_id: `1`,
-      league_id: `1`,
+      league_id: `4`,
       name: `Wolfenburg Crypt-Stealers`,
       faction: `Necromantic Horror`,
       head_coach: `Vargan Bloodmoon`,
@@ -89,7 +89,7 @@ exports.seed = async function (knex) {
     {
       id: `9`,
       user_id: `1`,
-      league_id: `1`,
+      league_id: `4`,
       name: `Kara Temple Harpies`,
       faction: `Amazon`,
       head_coach: `Seraphina Swiftarrow`,
@@ -99,7 +99,7 @@ exports.seed = async function (knex) {
     {
       id: `10`,
       user_id: `1`,
-      league_id: `1`,
+      league_id: `4`,
       name: `Norsca Rampagers`,
       faction: `Norse`,
       head_coach: `Bjorn Frostbeard`,
@@ -109,7 +109,7 @@ exports.seed = async function (knex) {
     {
       id: `11`,
       user_id: `1`,
-      league_id: `1`,
+      league_id: `4`,
       name: `Drakfang Thirsters`,
       faction: `Vampire`,
       head_coach: `Vlad von Drakenhof`,
@@ -119,7 +119,7 @@ exports.seed = async function (knex) {
     {
       id: `12`,
       user_id: `1`,
-      league_id: `1`,
+      league_id: `4`,
       name: `Thunder Valley Greenskins`,
       faction: `Black Orcs`,
       head_coach: `Throgg Bigbash`,
